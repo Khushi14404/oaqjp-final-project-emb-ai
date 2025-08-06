@@ -11,13 +11,14 @@ def emotion_detect_route():
     This function receives text from the frontend via GET,
     runs the emotion detector on it, and returns a formatted response.
     """
+
     text_to_analyze = request.args.get('textToAnalyze')
 
     if not text_to_analyze or text_to_analyze.strip() == "":
         return "Invalid input! Please enter some text to analyze."
 
     response = emotion_detector(text_to_analyze)
-
+    
     if not response or response["dominant_emotion"] is None:
         return "Invalid text! Please try again!"
 
